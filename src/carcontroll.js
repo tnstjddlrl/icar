@@ -5,12 +5,14 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   Alert,
+  TouchableOpacity,
 
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Toast from 'react-native-toast-message';
+import { event } from 'react-native-reanimated';
 
 const chwidth = Dimensions.get('window').width
 const chheight = Dimensions.get('window').height
@@ -189,13 +191,21 @@ const Carcontroll = () => {
     }
   }
 
+  function ee(event){
+    console.log(event.nativeEvent)
+  }
+
+
   return (
     <View>
       <View style={{ width: chwidth, height: chheight - 40 }}>
-
+        <TouchableWithoutFeedback >
         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity onPress={(event)=>ee(event)}>
           <Text>자동차 이미지</Text>
+          </TouchableOpacity>
         </View>
+        </TouchableWithoutFeedback>
 
 
         <TouchableWithoutFeedback onPress={() => { bootClick() }}>
