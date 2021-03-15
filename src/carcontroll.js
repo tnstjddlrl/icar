@@ -10,6 +10,8 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Toast from 'react-native-toast-message';
+
 const chwidth = Dimensions.get('window').width
 const chheight = Dimensions.get('window').height
 
@@ -26,11 +28,39 @@ const Carcontroll = () => {
       if(is=='lock'){
         setDoor(true)
         Alert.alert('door_0')
+
+        Toast.show({
+          type: 'success',
+          position: 'top',
+          text1: '도어 명령',
+          text2: '도어 명령을 [LOCK]하였습니다.',
+          visibilityTime: 2000,
+          autoHide: true,
+          topOffset: 30,
+          bottomOffset: 40,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {}
+        });
       }
   
       if(is=='unlock'){
         setDoor(false)
         Alert.alert('door_1')
+
+        Toast.show({
+          type: 'success',
+          position: 'top',
+          text1: '도어 명령',
+          text2: '도어 명령을 [UNLOCK]하였습니다.',
+          visibilityTime: 2000,
+          autoHide: true,
+          topOffset: 30,
+          bottomOffset: 40,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {}
+        });
       }
     }
   
@@ -38,11 +68,39 @@ const Carcontroll = () => {
       if(is=='on'){
         setPanic(true)
         Alert.alert('panic_0')
+
+        Toast.show({
+          type: 'success',
+          position: 'top',
+          text1: '패닉 명령',
+          text2: '패닉 명령을 [ON]하였습니다.',
+          visibilityTime: 2000,
+          autoHide: true,
+          topOffset: 30,
+          bottomOffset: 40,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {}
+        });
       }
   
       if(is=='off'){
         setPanic(false)
         Alert.alert('panic_1')
+
+        Toast.show({
+          type: 'success',
+          position: 'top',
+          text1: '패닉 명령',
+          text2: '패닉 명령을 [OFF]하였습니다.',
+          visibilityTime: 2000,
+          autoHide: true,
+          topOffset: 30,
+          bottomOffset: 40,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {}
+        });
       }
     }
   
@@ -50,17 +108,60 @@ const Carcontroll = () => {
       if(is=='on'){
         setWarnbim(true)
         Alert.alert('emergency_0')
+
+        Toast.show({
+          type: 'success',
+          position: 'top',
+          text1: '비상등 명령',
+          text2: '비상등 명령을 [ON]하였습니다.',
+          visibilityTime: 2000,
+          autoHide: true,
+          topOffset: 30,
+          bottomOffset: 40,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {}
+        });
       }
   
       if(is=='off'){
         setWarnbim(false)
         Alert.alert('emergency_1')
+
+        Toast.show({
+          type: 'success',
+          position: 'top',
+          text1: '비상등 명령',
+          text2: '비상등 명령을 [OFF]하였습니다.',
+          visibilityTime: 2000,
+          autoHide: true,
+          topOffset: 30,
+          bottomOffset: 40,
+          onShow: () => {},
+          onHide: () => {},
+          onPress: () => {}
+        });
       }
     }
   
     function trunkClick(){
       Alert.alert('trunk_0')
       setTrunk(true)
+
+      Toast.show({
+        type: 'success',
+        position: 'top',
+        text1: '트렁크 명령',
+        text2: '트렁크 명령을 [OPEN]하였습니다.',
+        visibilityTime: 2000,
+        autoHide: true,
+        topOffset: 30,
+        bottomOffset: 40,
+        onShow: () => {},
+        onHide: () => {},
+        onPress: () => {}
+      });
+
       setTimeout(() => {
         setTrunk(false)
       }, 1500);
@@ -208,6 +309,7 @@ const Carcontroll = () => {
           </View>
   
         </View>
+        <Toast style={{marginBottom:-50}} ref={(ref) => Toast.setRef(ref)} />
       </View>
     )
   }
