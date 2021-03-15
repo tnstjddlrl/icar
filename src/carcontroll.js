@@ -19,35 +19,58 @@ const Carcontroll = () => {
     const [door, setDoor] = useState(true)
     const [panic, setPanic] = useState(false)
     const [warnbim, setWarnbim] = useState(false)
+    const [trunk , setTrunk]  = useState(false)
   
   
     function doorClick (is) {
       if(is=='lock'){
         setDoor(true)
+        Alert.alert('door_0')
       }
   
       if(is=='unlock'){
         setDoor(false)
+        Alert.alert('door_1')
       }
     }
   
     function panicClick(is){
+      if(is=='on'){
+        setPanic(true)
+        Alert.alert('panic_0')
+      }
   
+      if(is=='off'){
+        setPanic(false)
+        Alert.alert('panic_1')
+      }
     }
   
     function warnClick(is){
+      if(is=='on'){
+        setWarnbim(true)
+        Alert.alert('emergency_0')
+      }
   
+      if(is=='off'){
+        setWarnbim(false)
+        Alert.alert('emergency_1')
+      }
     }
   
-    function trunkClick(is){
-  
+    function trunkClick(){
+      Alert.alert('trunk_0')
+      setTrunk(true)
+      setTimeout(() => {
+        setTrunk(false)
+      }, 1500);
     }
   
     function bootClick(){
       if(boot==false){
         setBoot(true)
         Alert.alert(
-          "원격시동을 켰습니다!",
+          "boot_0",
           "",
           [
             { text: "확인" }
@@ -56,7 +79,7 @@ const Carcontroll = () => {
       }else{
         setBoot(false)
         Alert.alert(
-          "원격시동을 껐습니다!",
+          "boot_1",
           "",
           [
             { text: "확인" }
@@ -73,9 +96,10 @@ const Carcontroll = () => {
             <Text>자동차 이미지</Text>
           </View>
   
+
           <TouchableWithoutFeedback onPress={()=>{bootClick()}}>
           <View style={{ width: chwidth - 20, flex: 0.8, backgroundColor: '#cccccc', marginLeft: 10, borderRadius: 10,justifyContent:'center' }}>
-            {boot ? <Text style={{marginLeft:10}}>원격시동 끄기</Text> : <Text style={{marginLeft:10}}>원격시동 켜기</Text>}
+            {boot ? <Text style={{marginLeft:10,color:'#ff5c33'}}>원격시동 끄기</Text> : <Text style={{marginLeft:10,color:'black'}}>원격시동 켜기</Text>}
           </View>
           </TouchableWithoutFeedback>
   
@@ -119,17 +143,23 @@ const Carcontroll = () => {
               <Text>패닉</Text>
               </View>
               <View style={{ flex: 2, flexDirection: 'row' }}>
-              <TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={()=>panicClick('off')}>
                 <View style={{ flex: 1, backgroundColor: '#999999', borderBottomLeftRadius: 10,justifyContent:'center',alignItems:'center' }}>
                   <Text>off</Text>
                 </View>
                 </TouchableWithoutFeedback>
                 <View style={{flex:0.02}}></View>
-                <TouchableWithoutFeedback>
+
+                {panic ? <TouchableWithoutFeedback onPress={()=>panicClick('on')}>
+                <View style={{ flex: 1, backgroundColor: '#ff5c33', borderBottomRightRadius: 10,justifyContent:'center',alignItems:'center' }}>
+                  <Text>on</Text>
+                </View>
+                </TouchableWithoutFeedback> : <TouchableWithoutFeedback onPress={()=>panicClick('on')}>
                 <View style={{ flex: 1, backgroundColor: '#999999', borderBottomRightRadius: 10,justifyContent:'center',alignItems:'center' }}>
                   <Text>on</Text>
                 </View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>}
+
               </View>
             </View>
           </View>
@@ -140,17 +170,22 @@ const Carcontroll = () => {
               <Text>비상등</Text>
               </View>
               <View style={{ flex: 2, flexDirection: 'row' }}>
-              <TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={()=>warnClick('off')}>
                 <View style={{ flex: 1, backgroundColor: '#999999', borderBottomLeftRadius: 10,justifyContent:'center',alignItems:'center' }}>
                   <Text>off</Text>
                 </View>
                 </TouchableWithoutFeedback>
                 <View style={{flex:0.01}}></View>
-                <TouchableWithoutFeedback>
+
+                {warnbim ?<TouchableWithoutFeedback onPress={()=>warnClick('on')}>
+                <View style={{ flex: 1, backgroundColor: '#ff5c33', borderBottomRightRadius: 10,justifyContent:'center',alignItems:'center' }}>
+                  <Text>on</Text>
+                </View>
+                </TouchableWithoutFeedback> : <TouchableWithoutFeedback onPress={()=>warnClick('on')}>
                 <View style={{ flex: 1, backgroundColor: '#999999', borderBottomRightRadius: 10,justifyContent:'center',alignItems:'center' }}>
                   <Text>on</Text>
                 </View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>}
               </View>
             </View>
             <View style={{ width: chwidth / 2 - 15, backgroundColor: '#cccccc', marginLeft: 10, borderRadius: 10 }}>
@@ -158,11 +193,16 @@ const Carcontroll = () => {
               <Text>트렁크</Text>
               </View>
               <View style={{ flex: 2, flexDirection: 'row' }}>
-              <TouchableWithoutFeedback>
+
+              {trunk ?  <TouchableWithoutFeedback onPress={()=>trunkClick()}>
+                <View style={{ flex: 1, backgroundColor: '#ff5c33', borderBottomLeftRadius: 10, borderBottomRightRadius: 10,justifyContent:'center',alignItems:'center' }}>
+                  <Text>open</Text>
+                </View>
+                </TouchableWithoutFeedback> :  <TouchableWithoutFeedback onPress={()=>trunkClick()}>
                 <View style={{ flex: 1, backgroundColor: '#999999', borderBottomLeftRadius: 10, borderBottomRightRadius: 10,justifyContent:'center',alignItems:'center' }}>
                   <Text>open</Text>
                 </View>
-                </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>}
               </View>
             </View>
           </View>
